@@ -417,7 +417,8 @@ namespace sick_scan
     // scan publisher
     pub_ = nh_.advertise<sensor_msgs::LaserScan>("scan", 1000);
 #endif
-    pub_ = getMainNode()->create_publisher<sensor_msgs::msg::LaserScan>("scan", 10);
+    //pub_ = getMainNode()->create_publisher<sensor_msgs::msg::LaserScan>("scan", 10);
+    pub_ = nullptr;
 
     // e.g. https://answers.ros.org/question/312587/generate-and-publish-pointcloud2-in-ros2/
     cloud_pub_ = getMainNode()->create_publisher<sensor_msgs::msg::PointCloud2>("cloud", 100);
@@ -2977,7 +2978,7 @@ namespace sick_scan
 
                 //msg.range_min = 0.0f;
                 //msg.range_max = 100.0f;
-                pub_->publish(msg);
+                //pub_->publish(msg);
               }
 #else
               RCLCPP_INFO(node->get_logger(),"MSG received...");
