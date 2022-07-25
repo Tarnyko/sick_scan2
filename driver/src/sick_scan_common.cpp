@@ -421,7 +421,11 @@ namespace sick_scan
 
     // e.g. https://answers.ros.org/question/312587/generate-and-publish-pointcloud2-in-ros2/
     cloud_pub_ = getMainNode()->create_publisher<sensor_msgs::msg::PointCloud2>("cloud", 100);
-    imuScan_pub_ = getMainNode()->create_publisher<sensor_msgs::msg::Imu>("imu", 100);
+
+    if (config_.imu_enable)
+      imuScan_pub_ = getMainNode()->create_publisher<sensor_msgs::msg::Imu>("imu", 100);
+    else
+      imuScan_pub_ = nullptr;
   }
 
   /*!
